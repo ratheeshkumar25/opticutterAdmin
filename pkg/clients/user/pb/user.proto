@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./";
+
+// Define the UserService with BlockUser RPC
+service UserService {
+    rpc BlockUser(ID) returns (Response);
+    rpc UnblockUser(ID)returns(Response);
+}
+
+// Define the Response message
+message Response {
+    enum Status {
+        OK = 0;
+        ERROR = 1;
+    }
+
+    Status status = 1;
+    string message = 2;
+    oneof payload {
+        string error = 3;
+        string data = 4;
+    }
+}
+
+// Define the ID message
+message ID {
+    uint32 ID = 1;
+}
+
+
+
