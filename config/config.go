@@ -12,6 +12,7 @@ type Config struct {
 	Sslmode      string `mapstructure:"SSL"`
 	GrpcUserPort string `mapstructure:"GRPCUSERPORT"`
 	AdminPort    string `mapstructure:"GRPCADMINPORT"`
+	MaterialPort string `mapstructure:"GRPCMATERIALPORT"`
 }
 
 func LoadConfig() *Config {
