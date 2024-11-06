@@ -10,3 +10,11 @@ func (a *AdminRepository) FindAdminByEmail(email string) (*model.Admin, error) {
 	}
 	return &admin, nil
 }
+
+// CreateAdmin implements interfaces.AdminRepoInter.
+func (a *AdminRepository) CreateAdmin(admin *model.Admin) (uint, error) {
+	if err := a.DB.Create(&admin).Error; err != nil {
+		return 0, err
+	}
+	return admin.ID, nil
+}

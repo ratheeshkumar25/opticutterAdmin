@@ -31,7 +31,7 @@ func ConnectDB(config *config.Config) *gorm.DB {
 	}
 
 	err = DB.AutoMigrate(
-		&model.Admin{},
+		&model.Admin{Email: config.AdminEmail, Password: config.AdminPassword},
 	)
 
 	if err != nil {

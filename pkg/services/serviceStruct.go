@@ -15,7 +15,8 @@ type AdminService struct {
 
 func NewAdminRepository(repo inter.AdminRepoInter, userClient userpb.UserServiceClient, materialClient materialpb.MaterialServiceClient) interfaces.AdminServiceInter {
 	return &AdminService{
-		Repo:       repo,
-		UserClient: userClient,
+		Repo:           repo,
+		UserClient:     userClient,
+		MaterialClient: materialClient,
 	}
 }
