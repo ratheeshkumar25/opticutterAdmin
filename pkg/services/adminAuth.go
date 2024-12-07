@@ -10,50 +10,6 @@ import (
 	"gorm.io/gorm"
 )
 
-// // LoginService implements interfaces.AdminServiceInter.
-// func (a *AdminService) LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error) {
-// 	// hashedPass, err := utils.HashPassword(p.Password)
-// 	// if err != nil {
-// 	// 	return &pb.AdminResponse{
-// 	// 		Status:  pb.AdminResponse_ERROR,
-// 	// 		Message: "error in hasing password",
-// 	// 		Payload: &pb.AdminResponse_Error{Error: err.Error()},
-// 	// 	}, errors.New("unable to hashpassword")
-// 	// }
-// 	// admin := &model.Admin{
-// 	// 	Email:    p.Email,
-// 	// 	Password: hashedPass,
-// 	// }
-
-// 	admin, err := a.Repo.FindAdminByEmail(p.Email)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	if admin.Password != p.Password {
-// 		return &pb.AdminResponse{
-// 			Status:  pb.AdminResponse_ERROR,
-// 			Message: "Type correct Password",
-// 			Payload: &pb.AdminResponse_Error{Error: "Incorrect Password"},
-// 		}, errors.New("incorrect password")
-// 	}
-
-// 	jwtToken, err := utils.GenerateToken(config.LoadConfig().SECERETKEY, admin.Email)
-// 	if err != nil {
-// 		return &pb.AdminResponse{
-// 			Status:  pb.AdminResponse_ERROR,
-// 			Message: "error in generating token",
-// 			Payload: &pb.AdminResponse_Error{Error: err.Error()},
-// 		}, errors.New("error generating token")
-// 	}
-
-// 	return &pb.AdminResponse{
-// 		Status:  pb.AdminResponse_OK,
-// 		Message: "Login successful",
-// 		Payload: &pb.AdminResponse_Data{Data: jwtToken},
-// 	}, nil
-// }
-
 // LoginService implements interfaces.AdminServiceInter.
 func (a *AdminService) LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error) {
 	// Attem to find the admin by email
@@ -84,7 +40,7 @@ func (a *AdminService) LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error)
 			}
 			return &pb.AdminResponse{
 				Status:  pb.AdminResponse_OK,
-				Message: "Admin created successfully",
+				Message: "admin created successfully",
 				Payload: nil,
 			}, nil
 		}
@@ -96,7 +52,7 @@ func (a *AdminService) LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error)
 	if err := utils.CheckPassword(admin.Password, p.Password); err != nil {
 		return &pb.AdminResponse{
 			Status:  pb.AdminResponse_ERROR,
-			Message: "Incorrect password",
+			Message: "incorrect password",
 			Payload: &pb.AdminResponse_Error{Error: "Incorrect Password"},
 		}, errors.New("incorrect password")
 	}
@@ -113,7 +69,19 @@ func (a *AdminService) LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error)
 
 	return &pb.AdminResponse{
 		Status:  pb.AdminResponse_OK,
-		Message: "Login successful",
+		Message: "login successful",
 		Payload: &pb.AdminResponse_Data{Data: jwtToken},
 	}, nil
+}
+
+func (a *AdminService) AdminViewProfileService(p *pb.AdID) (*pb.AdminProfile, error) {
+	admn, err := a.Repo.FindAdminByID(uint(p.ID))
+	if err != nil {
+		return nil, err
+	}
+	adminModel := &pb.AdminProfile{
+		Email: admn.Email,
+	}
+
+	return adminModel, nil
 }

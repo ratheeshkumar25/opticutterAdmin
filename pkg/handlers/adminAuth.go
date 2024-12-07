@@ -13,3 +13,11 @@ func (a *AdminHandler) AdminLoginRequest(ctx context.Context, p *pb.AdminLogin) 
 	}
 	return response, nil
 }
+
+func (a *AdminHandler) AdminViewProfile(ctx context.Context, p *pb.AdID) (*pb.AdminProfile, error) {
+	response, err := a.SVC.AdminViewProfileService(p)
+	if err != nil {
+		return response, nil
+	}
+	return response, nil
+}

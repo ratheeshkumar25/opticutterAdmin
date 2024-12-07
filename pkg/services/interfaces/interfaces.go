@@ -8,6 +8,7 @@ type AdminServiceInter interface {
 	LoginService(p *pb.AdminLogin) (*pb.AdminResponse, error)
 	BlockUserService(p *pb.AdID) (*pb.AdminResponse, error)
 	UnblockUserService(p *pb.AdID) (*pb.AdminResponse, error)
+	AdminViewProfileService(p *pb.AdID) (*pb.AdminProfile, error)
 
 	AddMaterialService(p *pb.AdminMaterial) (*pb.AdminResponse, error)
 	FindMaterialByIDService(p *pb.AdminMaterialID) (*pb.AdminMaterial, error)

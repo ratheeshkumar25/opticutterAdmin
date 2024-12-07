@@ -12,6 +12,7 @@ service MaterialService {
     rpc FindAllMaterial(MaterialNoParams) returns (MaterialList);
     rpc EditMaterial(Material) returns (Material);
     rpc RemoveMaterial(MaterialID) returns (MaterialResponse);
+    
 
     // Service to handle item management
     rpc AddItem(Item) returns (ItemResponse);
@@ -57,7 +58,7 @@ message MaterialList {
 }
 
 message MaterialID {
-    uint32 ID = 1;  // Corrected typo
+    uint32 ID = 1; 
 }
 
 // Item messages

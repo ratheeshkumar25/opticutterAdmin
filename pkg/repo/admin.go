@@ -18,3 +18,13 @@ func (a *AdminRepository) CreateAdmin(admin *model.Admin) (uint, error) {
 	}
 	return admin.ID, nil
 }
+
+func (a *AdminRepository) FindAdminByID(Admin_ID uint) (*model.Admin, error) {
+	var admin model.Admin
+
+	if err := a.DB.First(&admin, Admin_ID).Error; err != nil {
+		return nil, err
+	}
+	return &admin, nil
+
+}
