@@ -11,7 +11,7 @@ import (
 )
 
 func ClientDial(cfg config.Config) (pb.UserServiceClient, error) {
-	grpcAddr := fmt.Sprintf("localhost:%s", cfg.GrpcUserPort)
+	grpcAddr := fmt.Sprintf("user-service:%s", cfg.GrpcUserPort)
 	grpc, err := grpc.NewClient(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Printf("error Dialing to grpc user client: %s, ", cfg.GrpcUserPort)
