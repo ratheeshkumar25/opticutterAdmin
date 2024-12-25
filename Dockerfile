@@ -14,7 +14,7 @@ WORKDIR /app
 
 COPY --from=builder /app/adminservice .
 
-COPY ./cmd/.env /app/
+COPY .env /app/
 
 CMD ["./adminservice"]
 
