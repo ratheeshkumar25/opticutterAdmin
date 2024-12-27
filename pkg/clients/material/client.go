@@ -14,7 +14,7 @@ func ClientDial(cfg config.Config) (pb.MaterialServiceClient, error) {
 	grpcAddr := fmt.Sprintf("material-service:%s", cfg.MaterialPort)
 	grpc, err := grpc.NewClient(grpcAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		log.Printf("error Dialing to grpc user client: %s, ", cfg.MaterialPort)
+		log.Printf("error Dialing to grpc material client: %s, ", cfg.MaterialPort)
 		return nil, err
 	}
 	log.Printf("Succesfully connected to material client at port: %v", cfg.MaterialPort)
