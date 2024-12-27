@@ -47,6 +47,7 @@ jobs:
         echo "REDISHOST=${{ secrets.REDISHOST }}" >> .env
         echo "GRPCUSERPORT=${{ secrets.GRPCUSERPORT }}" >> .env
         echo "GRPCADMINPORT=${{ secrets.GRPCADMINPORT }}" >> .env
+        echo "GRPCMATERIALPORT=${{ secrets.GRPCMATERIALPORT }}" >> .env
         echo "ADMINEMAIL=${{ secrets.ADMINEMAIL }}" >> .env
         echo "ADMINPASSWORD=${{ secrets.ADMINPASSWORD }}" >> .env
 
